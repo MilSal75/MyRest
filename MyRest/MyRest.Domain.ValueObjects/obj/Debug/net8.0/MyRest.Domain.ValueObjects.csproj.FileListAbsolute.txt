@@ -1,0 +1,11 @@
+F:\4 семестр\Технологии программирования\MyRest\MyRest.Domain.ValueObjects\bin\Debug\net8.0\MyRest.Domain.ValueObjects.deps.json
+F:\4 семестр\Технологии программирования\MyRest\MyRest.Domain.ValueObjects\bin\Debug\net8.0\MyRest.Domain.ValueObjects.dll
+F:\4 семестр\Технологии программирования\MyRest\MyRest.Domain.ValueObjects\bin\Debug\net8.0\MyRest.Domain.ValueObjects.pdb
+F:\4 семестр\Технологии программирования\MyRest\MyRest.Domain.ValueObjects\obj\Debug\net8.0\MyRest.Domain.ValueObjects.GeneratedMSBuildEditorConfig.editorconfig
+F:\4 семестр\Технологии программирования\MyRest\MyRest.Domain.ValueObjects\obj\Debug\net8.0\MyRest.Domain.ValueObjects.AssemblyInfoInputs.cache
+F:\4 семестр\Технологии программирования\MyRest\MyRest.Domain.ValueObjects\obj\Debug\net8.0\MyRest.Domain.ValueObjects.AssemblyInfo.cs
+F:\4 семестр\Технологии программирования\MyRest\MyRest.Domain.ValueObjects\obj\Debug\net8.0\MyRest.Domain.ValueObjects.csproj.CoreCompileInputs.cache
+F:\4 семестр\Технологии программирования\MyRest\MyRest.Domain.ValueObjects\obj\Debug\net8.0\MyRest.Domain.ValueObjects.dll
+F:\4 семестр\Технологии программирования\MyRest\MyRest.Domain.ValueObjects\obj\Debug\net8.0\refint\MyRest.Domain.ValueObjects.dll
+F:\4 семестр\Технологии программирования\MyRest\MyRest.Domain.ValueObjects\obj\Debug\net8.0\MyRest.Domain.ValueObjects.pdb
+F:\4 семестр\Технологии программирования\MyRest\MyRest.Domain.ValueObjects\obj\Debug\net8.0\ref\MyRest.Domain.ValueObjects.dll

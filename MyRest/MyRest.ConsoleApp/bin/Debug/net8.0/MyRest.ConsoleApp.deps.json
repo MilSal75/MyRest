@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "MyRest.ConsoleApp/1.0.0": {
+        "dependencies": {
+          "MyRest.Domain": "1.0.0",
+          "MyRest.Domain.ValueObjects": "1.0.0"
+        },
+        "runtime": {
+          "MyRest.ConsoleApp.dll": {}
+        }
+      },
+      "MyRest.Domain/1.0.0": {
+        "dependencies": {
+          "MyRest.Domain.ValueObjects": "1.0.0"
+        },
+        "runtime": {
+          "MyRest.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "MyRest.Domain.ValueObjects/1.0.0": {
+        "runtime": {
+          "MyRest.Domain.ValueObjects.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MyRest.ConsoleApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MyRest.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MyRest.Domain.ValueObjects/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
