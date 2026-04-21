@@ -22,6 +22,8 @@ public class Employee
     private readonly List<ShiftAssignment> _assignments = new();
     public IReadOnlyCollection<ShiftAssignment> Assignments => _assignments.AsReadOnly();
 
+    private Employee() { } // Пустой конструктор специально для EF Core
+
     internal Employee(Guid managerId, PersonName firstName, PersonName lastName, PhoneNumber phone)
     {
         ManagerId = managerId;

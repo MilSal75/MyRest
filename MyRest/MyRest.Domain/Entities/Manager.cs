@@ -14,7 +14,9 @@ public class Manager
     public PhoneNumber Phone { get; private set; }
     public UserStatus Status { get; private set; } = UserStatus.Active;
 
-    // Конструктор обновлен
+    private Manager() { } // Пустой конструктор специально для EF Core
+
+    // Конструктор
     public Manager(PersonName firstName, PersonName lastName, PhoneNumber phone)
     {
         FirstName = firstName;

@@ -12,6 +12,7 @@ public class Vacation
     public DateOnly EndDate { get; }
     public VacationStatus Status { get; private set; } = VacationStatus.Requested;
 
+    private Vacation() { } // Пустой конструктор специально для EF Core
     internal Vacation(Guid employeeId, DateOnly startDate, DateOnly endDate)
     {
         if (startDate >= endDate)

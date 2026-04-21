@@ -13,6 +13,8 @@ public class Shift
     private readonly List<ShiftAssignment> _assignments = new();
     public IReadOnlyCollection<ShiftAssignment> Assignments => _assignments.AsReadOnly();
 
+    private Shift() { } // Пустой конструктор специально для EF Core
+
     internal Shift(Guid managerId, DateOnly shiftDate, TimeOnly startTime, decimal durationHours)
     {
         if (durationHours <= 0 || durationHours > 12)

@@ -10,6 +10,8 @@ public class ShiftAssignment
     public Guid ShiftId { get; }
     public AssignmentStatus Status { get; private set; } = AssignmentStatus.Planned;
 
+    private ShiftAssignment() { } // Пустой конструктор специально для EF Core
+
     internal ShiftAssignment(Guid employeeId, Guid shiftId)
     {
         EmployeeId = employeeId;
