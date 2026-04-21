@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MyRest.ConsoleApp/MyRest.ConsoleApp.csproj" />
+  <Project Path="MyRest.Domain.ValueObjects/MyRest.Domain.ValueObjects.csproj" />
+  <Project Path="MyRest.Domain/MyRest.Domain.csproj" />
+  <Project Path="MyRest.Infrastructure/MyRest.Infrastructure.csproj" Id="f49cc9de-6ba6-4d0e-ae6d-eb91b6ce462c" />
+</Solution>
