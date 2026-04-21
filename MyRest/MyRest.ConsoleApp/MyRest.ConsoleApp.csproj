@@ -8,8 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MyRest.Domain.ValueObjects\MyRest.Domain.ValueObjects.csproj" />
     <ProjectReference Include="..\MyRest.Domain\MyRest.Domain.csproj" />
+    <ProjectReference Include="..\MyRest.Infrastructure\MyRest.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
