@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "F:\\4 семестр\\Технологии программирования\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj": {}
+    "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj": {}
   },
   "projects": {
-    "F:\\4 семестр\\Технологии программирования\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj": {
+    "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\4 семестр\\Технологии программирования\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj",
+        "projectUniqueName": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj",
         "projectName": "MyRest.Domain.ValueObjects",
-        "projectPath": "F:\\4 семестр\\Технологии программирования\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj",
+        "projectPath": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj",
         "packagesPath": "C:\\Users\\Миланa\\.nuget\\packages\\",
-        "outputPath": "F:\\4 семестр\\Технологии программирования\\MyRest\\MyRest.Domain.ValueObjects\\obj\\",
+        "outputPath": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain.ValueObjects\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -30,6 +30,7 @@
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -48,6 +49,7 @@
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "imports": [
             "net461",
@@ -65,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

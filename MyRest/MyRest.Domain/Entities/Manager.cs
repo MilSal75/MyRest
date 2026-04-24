@@ -1,73 +1,39 @@
-﻿using MyRest.Domain.Enums;
-using MyRest.Domain.Exceptions;
-using MyRest.Domain.ValueObjects;
+﻿using MyRest.Domain.ValueObjects;
+using System;
+using System.Collections.Generic;
 
 namespace MyRest.Domain.Entities;
 
 public class Manager
 {
     public Guid Id { get; } = Guid.NewGuid();
-
-    // Используем Value Object
     public PersonName FirstName { get; private set; }
     public PersonName LastName { get; private set; }
-    public PhoneNumber Phone { get; private set; }
-    public UserStatus Status { get; private set; } = UserStatus.Active;
 
-    private Manager() { } // Пустой конструктор специально для EF Core
+    private List<Employee> _employees = new List<Employee>();
+    public IReadOnlyCollection<Employee> Employees => _employees.AsReadOnly();
 
-    // Конструктор
-    public Manager(PersonName firstName, PersonName lastName, PhoneNumber phone)
+    // Пустой конструктор для EF Core
+    private Manager() { }
+
+    public Manager(string firstName, string lastName)
     {
-        FirstName = firstName;
-        LastName = lastName;
-        Phone = phone;
+        FirstName = new PersonName(firstName);
+        LastName = new PersonName(lastName);
     }
 
-    // Метод найма теперь требует PersonName
-    public Employee HireEmployee(PersonName firstName, PersonName lastName, PhoneNumber phone)
+    public Employee HireEmployee(string fName, string lName, string phone)
     {
-        return new Employee(this.Id, firstName, lastName, phone);
+        var employee = new Employee(this, fName, lName, phone);
+        _employees.Add(employee);
+        return employee;
     }
 
     public void FireEmployee(Employee employee)
     {
-        if (employee.ManagerId != this.Id)
-            throw new InvalidEntityStateException("Этот сотрудник не является вашим подчиненным.");
+        if (!_employees.Contains(employee))
+            throw new InvalidOperationException("Попытка уволить сотрудника другого менеджера");
 
         employee.Fire();
-    }
-
-    public Shift CreateShift(DateOnly date, TimeOnly startTime, decimal durationHours)
-    {
-        if (Status != UserStatus.Active)
-            throw new InvalidEntityStateException("Только активный менеджер может создавать смены.");
-
-        return new Shift(this.Id, date, startTime, durationHours);
-    }
-
-    public ShiftAssignment AssignShift(Employee employee, Shift shift)
-    {
-        if (employee.ManagerId != this.Id)
-            throw new InvalidEntityStateException("Нельзя назначать чужого сотрудника.");
-        if (employee.Status != UserStatus.Active)
-            throw new InvalidEntityStateException("Нельзя назначить на смену неактивного сотрудника.");
-
-        var assignment = new ShiftAssignment(employee.Id, shift.Id);
-        employee.AddAssignment(assignment);
-        shift.AddAssignment(assignment);
-
-        return assignment;
-    }
-
-    public void ResolveVacation(Employee employee, Vacation vacation, bool isApproved)
-    {
-        if (employee.ManagerId != this.Id)
-            throw new InvalidEntityStateException("Сотрудник вам не подчиняется.");
-
-        if (isApproved)
-            vacation.Approve();
-        else
-            vacation.Reject();
     }
 }

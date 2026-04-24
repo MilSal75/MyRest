@@ -1,38 +1,32 @@
-﻿using System;
-using MyRest.Domain.Enums;
-using MyRest.Domain.Exceptions;
+﻿using MyRest.Domain.Enums;
+using System;
 
 namespace MyRest.Domain.Entities;
 
 public class Vacation
 {
     public Guid Id { get; } = Guid.NewGuid();
-    public Guid EmployeeId { get; }
-    public DateOnly StartDate { get; }
-    public DateOnly EndDate { get; }
+    public Guid EmployeeId { get; private set; }
+    public Employee Employee { get; private set; }
+
+    public DateTime StartDate { get; private set; }
+    public DateTime EndDate { get; private set; }
     public VacationStatus Status { get; private set; } = VacationStatus.Requested;
 
-    private Vacation() { } // Пустой конструктор специально для EF Core
-    internal Vacation(Guid employeeId, DateOnly startDate, DateOnly endDate)
-    {
-        if (startDate >= endDate)
-            throw new InvalidEntityStateException("Дата окончания отпуска должна быть позже даты начала.");
+    private Vacation() { }
 
-        EmployeeId = employeeId;
-        StartDate = startDate;
-        EndDate = endDate;
+    public Vacation(Employee employee, DateTime start, DateTime end)
+    {
+        Employee = employee ?? throw new ArgumentNullException(nameof(employee));
+        EmployeeId = employee.Id;
+
+        if (end < start)
+            throw new ArgumentOutOfRangeException(nameof(end), "Дата окончания отпуска не может быть раньше даты начала");
+
+        StartDate = start;
+        EndDate = end;
     }
 
-    internal void Approve() => Status = VacationStatus.Approved;
-    internal void Reject() => Status = VacationStatus.Rejected;
-
-    // Тот самый новый метод для вывода статуса с датой
-    public string GetStatusInfo()
-    {
-        if (Status == VacationStatus.Approved)
-        {
-            return $"Approved (до {EndDate:dd.MM.yyyy})";
-        }
-        return Status.ToString();
-    }
+    public void Approve() => Status = VacationStatus.Approved;
+    public void Reject() => Status = VacationStatus.Rejected;
 }

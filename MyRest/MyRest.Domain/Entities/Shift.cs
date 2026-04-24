@@ -1,34 +1,44 @@
-﻿using MyRest.Domain.Exceptions;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MyRest.Domain.Entities;
 
 public class Shift
 {
     public Guid Id { get; } = Guid.NewGuid();
-    public Guid ManagerId { get; }
-    public DateOnly ShiftDate { get; }
-    public TimeOnly StartTime { get; }
-    public decimal DurationHours { get; }
+    public Guid ManagerId { get; private set; }
 
-    private readonly List<ShiftAssignment> _assignments = new();
+    public DateTime ShiftDate { get; private set; }
+    public TimeSpan StartTime { get; private set; }
+    public decimal DurationHours { get; private set; }
+
+    private List<ShiftAssignment> _assignments = new List<ShiftAssignment>();
     public IReadOnlyCollection<ShiftAssignment> Assignments => _assignments.AsReadOnly();
 
-    private Shift() { } // Пустой конструктор специально для EF Core
+    private Shift() { }
 
-    internal Shift(Guid managerId, DateOnly shiftDate, TimeOnly startTime, decimal durationHours)
+    public Shift(Manager manager, DateTime date, TimeSpan startTime, decimal duration)
     {
-        if (durationHours <= 0 || durationHours > 12)
-            throw new InvalidEntityStateException("Длительность смены должна быть от 1 до 12 часов.");
+        if (manager == null)
+            throw new ArgumentNullException(nameof(manager));
 
-        ManagerId = managerId;
-        ShiftDate = shiftDate;
+        if (duration <= 0 || duration > 12)
+            throw new ArgumentOutOfRangeException(nameof(duration), "Длительность смены должна быть от 1 до 12 часов");
+
+        ManagerId = manager.Id;
+        ShiftDate = date;
         StartTime = startTime;
-        DurationHours = durationHours;
+        DurationHours = duration;
     }
 
-    internal void AddAssignment(ShiftAssignment assignment)
+    public ShiftAssignment AssignEmployee(Employee employee)
     {
-        if (!_assignments.Any(a => a.EmployeeId == assignment.EmployeeId))
-            _assignments.Add(assignment);
+        if (employee == null)
+            throw new ArgumentNullException(nameof(employee));
+
+        var assignment = new ShiftAssignment(employee, this);
+        _assignments.Add(assignment);
+
+        return assignment;
     }
 }
