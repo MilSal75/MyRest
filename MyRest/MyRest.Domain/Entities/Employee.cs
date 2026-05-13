@@ -1,39 +1,35 @@
-﻿using MyRest.Domain.ValueObjects;
+﻿using MyRest.Domain.Base;
+using MyRest.Domain.ValueObjects;
 using MyRest.Domain.Enums;
-using System;
-using System.Collections.Generic;
 
 namespace MyRest.Domain.Entities;
 
-public class Employee
+public class Employee : Entity<Guid>
 {
-    public Guid Id { get; } = Guid.NewGuid();
-    public PersonName FirstName { get; private set; }
-    public PersonName LastName { get; private set; }
-    public PhoneNumber Phone { get; private set; }
-
-    public Manager Manager { get; private set; }
+    private readonly ICollection<Vacation> _vacations = [];
+    public Manager Manager { get; private set; } = default!;
+    public PersonName FirstName { get; private set; } = default!;
+    public PersonName LastName { get; private set; } = default!;
+    public PhoneNumber Phone { get; private set; } = default!;
     public UserStatus Status { get; private set; } = UserStatus.Active;
 
-    private List<Vacation> _vacations = new List<Vacation>();
-    public IReadOnlyCollection<Vacation> Vacations => _vacations.AsReadOnly();
+    protected Employee() { }
 
-    private Employee() { }
+    public Employee(Manager manager, PersonName firstName, PersonName lastName, PhoneNumber phone)
+        : this(Guid.NewGuid(), manager, firstName, lastName, phone) { }
 
-    public Employee(Manager manager, string fName, string lName, string phone)
+    protected Employee(Guid id, Manager manager, PersonName firstName, PersonName lastName, PhoneNumber phone) : base(id)
     {
         Manager = manager ?? throw new ArgumentNullException(nameof(manager));
-        FirstName = new PersonName(fName);
-        LastName = new PersonName(lName);
-        Phone = new PhoneNumber(phone);
+        FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
+        LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
+        Phone = phone ?? throw new ArgumentNullException(nameof(phone));
     }
 
-    public void Fire() => Status = UserStatus.Fired;
-
-    public Vacation RequestVacation(DateTime start, DateTime end)
+    internal bool Fire()
     {
-        var vacation = new Vacation(this, start, end);
-        _vacations.Add(vacation);
-        return vacation;
+        if (Status == UserStatus.Fired) return false;
+        Status = UserStatus.Fired;
+        return true;
     }
 }

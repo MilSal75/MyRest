@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="MyRest.ConsoleApp/MyRest.ConsoleApp.csproj" />
+  <Project Path="MyRest.Domain.Repositories.Abstractions/MyRest.Domain.Repositories.Abstractions.csproj" Id="e613620c-62cd-4d19-b1f2-ca8af306aba0" />
   <Project Path="MyRest.Domain.ValueObjects/MyRest.Domain.ValueObjects.csproj" />
   <Project Path="MyRest.Domain/MyRest.Domain.csproj" />
 </Solution>

@@ -1,39 +1,29 @@
-﻿using MyRest.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
+﻿using MyRest.Domain.Base;
+using MyRest.Domain.Exceptions;
+using MyRest.Domain.ValueObjects;
 
 namespace MyRest.Domain.Entities;
 
-public class Manager
+public class Manager(Guid id, PersonName firstName, PersonName lastName) : Entity<Guid>(id)
 {
-    public Guid Id { get; } = Guid.NewGuid();
-    public PersonName FirstName { get; private set; }
-    public PersonName LastName { get; private set; }
+    private readonly ICollection<Employee> _employees = [];
 
-    private List<Employee> _employees = new List<Employee>();
-    public IReadOnlyCollection<Employee> Employees => _employees.AsReadOnly();
+    public PersonName FirstName { get; private set; } = firstName ?? throw new ArgumentNullException(nameof(firstName));
+    public PersonName LastName { get; private set; } = lastName ?? throw new ArgumentNullException(nameof(lastName));
+    public IReadOnlyCollection<Employee> Employees => _employees.ToList().AsReadOnly();
 
-    // Пустой конструктор для EF Core
-    private Manager() { }
+    protected Manager() : this(Guid.NewGuid(), default!, default!) { }
 
-    public Manager(string firstName, string lastName)
+    public Employee HireEmployee(PersonName firstName, PersonName lastName, PhoneNumber phone)
     {
-        FirstName = new PersonName(firstName);
-        LastName = new PersonName(lastName);
-    }
-
-    public Employee HireEmployee(string fName, string lName, string phone)
-    {
-        var employee = new Employee(this, fName, lName, phone);
+        var employee = new Employee(this, firstName, lastName, phone);
         _employees.Add(employee);
         return employee;
     }
 
-    public void FireEmployee(Employee employee)
+    public bool FireEmployee(Employee employee)
     {
-        if (!_employees.Contains(employee))
-            throw new InvalidOperationException("Попытка уволить сотрудника другого менеджера");
-
-        employee.Fire();
+        if (employee.Manager.Id != this.Id) throw new EmployeeNotBelongManagerException(this, employee);
+        return employee.Fire();
     }
 }

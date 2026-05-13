@@ -1,18 +1,22 @@
-﻿using MyRest.Domain.ValueObjects.Base;
-using MyRest.Domain.ValueObjects.Exceptions;
-using System.Text.RegularExpressions;
+﻿using MyRest.Domain.ValueObjects.Exceptions;
+using MyRest.Domain.ValueObjects.Base;
 
 namespace MyRest.Domain.ValueObjects.Validators;
 
 public class PhoneNumberValidator : IValidator<string>
 {
+    public static int MIN_LENGTH => 7;
+    public static int MAX_LENGTH => 15;
+
     public void Validate(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
-            throw new InvalidPhoneNumberException("Номер телефона не может быть пустым!", nameof(value));
+            throw new ArgumentNullOrWhiteSpaceException(nameof(value));
 
-        // Проверка: номер может начинаться с плюса и содержать от 10 до 15 цифр
-        if (!Regex.IsMatch(value, @"^\+?[0-9]{10,15}$"))
-            throw new InvalidPhoneNumberException("Неверный формат номера телефона!", nameof(value));
+        if (value.Length < MIN_LENGTH)
+            throw new ArgumentShortValueException(nameof(value), MIN_LENGTH);
+
+        if (value.Length > MAX_LENGTH)
+            throw new ArgumentLongValueException(nameof(value), MAX_LENGTH);
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4MGcYELD1a0=",
-  "success": false,
-  "projectFilePath": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.ConsoleApp\\MyRest.ConsoleApp.csproj",
+  "dgSpecHash": "HS/2CbaphYU=",
+  "success": true,
+  "projectFilePath": "F:\\4 семестр\\Технологии программирования\\git\\MyRest\\MyRest.ConsoleApp\\MyRest.ConsoleApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Миланa\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Миланa\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
@@ -41,17 +41,5 @@
     "C:\\Users\\Миланa\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512",
     "C:\\Users\\Миланa\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1104",
-      "level": "Error",
-      "message": "Не удалось найти проект \"F:\\НОУТ\\MyRest\\MyRest\\MyRest.Infrastructure\\MyRest.Infrastructure.csproj\". Убедитесь, что ссылка на проект действительна и файл проекта существует.",
-      "projectPath": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.ConsoleApp\\MyRest.ConsoleApp.csproj",
-      "filePath": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.ConsoleApp\\MyRest.ConsoleApp.csproj",
-      "libraryId": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Infrastructure\\MyRest.Infrastructure.csproj",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

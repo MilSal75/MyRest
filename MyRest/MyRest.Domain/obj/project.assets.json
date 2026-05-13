@@ -33,11 +33,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain\\MyRest.Domain.csproj",
+      "projectUniqueName": "F:\\4 семестр\\Технологии программирования\\git\\MyRest\\MyRest.Domain\\MyRest.Domain.csproj",
       "projectName": "MyRest.Domain",
-      "projectPath": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain\\MyRest.Domain.csproj",
+      "projectPath": "F:\\4 семестр\\Технологии программирования\\git\\MyRest\\MyRest.Domain\\MyRest.Domain.csproj",
       "packagesPath": "C:\\Users\\Миланa\\.nuget\\packages\\",
-      "outputPath": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain\\obj\\",
+      "outputPath": "F:\\4 семестр\\Технологии программирования\\git\\MyRest\\MyRest.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -59,8 +59,8 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {
-            "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj": {
-              "projectPath": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj"
+            "F:\\4 семестр\\Технологии программирования\\git\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj": {
+              "projectPath": "F:\\4 семестр\\Технологии программирования\\git\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj"
             }
           }
         }

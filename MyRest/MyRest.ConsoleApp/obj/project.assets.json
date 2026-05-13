@@ -2064,7 +2064,6 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Infrastructure\\MyRest.Infrastructure.csproj",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.10",
       "MyRest.Domain >= 1.0.0",
       "MyRest.Domain.ValueObjects >= 1.0.0"
@@ -2077,11 +2076,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.ConsoleApp\\MyRest.ConsoleApp.csproj",
+      "projectUniqueName": "F:\\4 семестр\\Технологии программирования\\git\\MyRest\\MyRest.ConsoleApp\\MyRest.ConsoleApp.csproj",
       "projectName": "MyRest.ConsoleApp",
-      "projectPath": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.ConsoleApp\\MyRest.ConsoleApp.csproj",
+      "projectPath": "F:\\4 семестр\\Технологии программирования\\git\\MyRest\\MyRest.ConsoleApp\\MyRest.ConsoleApp.csproj",
       "packagesPath": "C:\\Users\\Миланa\\.nuget\\packages\\",
-      "outputPath": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.ConsoleApp\\obj\\",
+      "outputPath": "F:\\4 семестр\\Технологии программирования\\git\\MyRest\\MyRest.ConsoleApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -2103,14 +2102,11 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {
-            "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj": {
-              "projectPath": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj"
+            "F:\\4 семестр\\Технологии программирования\\git\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj": {
+              "projectPath": "F:\\4 семестр\\Технологии программирования\\git\\MyRest\\MyRest.Domain.ValueObjects\\MyRest.Domain.ValueObjects.csproj"
             },
-            "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain\\MyRest.Domain.csproj": {
-              "projectPath": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Domain\\MyRest.Domain.csproj"
-            },
-            "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Infrastructure\\MyRest.Infrastructure.csproj": {
-              "projectPath": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Infrastructure\\MyRest.Infrastructure.csproj"
+            "F:\\4 семестр\\Технологии программирования\\git\\MyRest\\MyRest.Domain\\MyRest.Domain.csproj": {
+              "projectPath": "F:\\4 семестр\\Технологии программирования\\git\\MyRest\\MyRest.Domain\\MyRest.Domain.csproj"
             }
           }
         }
@@ -2158,16 +2154,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1104",
-      "level": "Error",
-      "message": "Не удалось найти проект \"F:\\НОУТ\\MyRest\\MyRest\\MyRest.Infrastructure\\MyRest.Infrastructure.csproj\". Убедитесь, что ссылка на проект действительна и файл проекта существует.",
-      "libraryId": "F:\\НОУТ\\MyRest\\MyRest\\MyRest.Infrastructure\\MyRest.Infrastructure.csproj",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  }
 }

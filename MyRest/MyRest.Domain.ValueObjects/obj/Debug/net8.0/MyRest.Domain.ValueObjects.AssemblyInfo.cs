@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyRest.Domain.ValueObjects")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fe9cecf4d4ee09199629e5759bf7ee8b9fcc33a7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8e80731f1d8606107a19258183377f14953509a")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyRest.Domain.ValueObjects")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyRest.Domain.ValueObjects")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

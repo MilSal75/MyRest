@@ -17,7 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MyRest.Domain.ValueObjects\MyRest.Domain.ValueObjects.csproj" />
     <ProjectReference Include="..\MyRest.Domain\MyRest.Domain.csproj" />
-    <ProjectReference Include="..\MyRest.Infrastructure\MyRest.Infrastructure.csproj" />
+    
   </ItemGroup>
 
 </Project>
