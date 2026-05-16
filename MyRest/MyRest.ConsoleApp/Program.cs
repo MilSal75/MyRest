@@ -28,8 +28,8 @@ internal class Program
             // 2. Создаем нормальные объекты
             Console.WriteLine("\n[Тест 2]: Создание менеджеров и сотрудников");
 
-            var managerIvan = new Manager(Guid.NewGuid(), new PersonName("Иван"), new PersonName("Иванов"));
-            var managerPetr = new Manager(Guid.NewGuid(), new PersonName("Петр"), new PersonName("Петров"));
+            var managerIvan = new Manager(Guid.NewGuid(), new PersonName("Иван"), new PersonName("Иванов"), new PhoneNumber("+79001111111"));
+            var managerPetr = new Manager(Guid.NewGuid(), new PersonName("Петр"), new PersonName("Петров"), new PhoneNumber("+79003333333"));
 
             // Иван нанимает Анну
             var empAnna = managerIvan.HireEmployee(

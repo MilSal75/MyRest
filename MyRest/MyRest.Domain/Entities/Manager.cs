@@ -1,29 +1,54 @@
 ﻿using MyRest.Domain.Base;
-using MyRest.Domain.Exceptions;
 using MyRest.Domain.ValueObjects;
+using MyRest.Domain.Exceptions;
 
 namespace MyRest.Domain.Entities;
 
-public class Manager(Guid id, PersonName firstName, PersonName lastName) : Entity<Guid>(id)
+public class Manager : Entity<Guid>
 {
-    private readonly ICollection<Employee> _employees = [];
+    public PersonName FirstName { get; private set; }
+    public PersonName LastName { get; private set; }
+    public PhoneNumber Phone { get; private set; }
 
-    public PersonName FirstName { get; private set; } = firstName ?? throw new ArgumentNullException(nameof(firstName));
-    public PersonName LastName { get; private set; } = lastName ?? throw new ArgumentNullException(nameof(lastName));
-    public IReadOnlyCollection<Employee> Employees => _employees.ToList().AsReadOnly();
+    private readonly List<Employee> _employees = new();
+    public IReadOnlyCollection<Employee> Employees => _employees.AsReadOnly();
 
-    protected Manager() : this(Guid.NewGuid(), default!, default!) { }
+    private Manager() : base(Guid.NewGuid()) { }
+
+    public Manager(Guid id, PersonName firstName, PersonName lastName, PhoneNumber phone)
+        : base(id)
+    {
+        FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
+        LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
+        Phone = phone ?? throw new ArgumentNullException(nameof(phone));
+    }
 
     public Employee HireEmployee(PersonName firstName, PersonName lastName, PhoneNumber phone)
     {
-        var employee = new Employee(this, firstName, lastName, phone);
+        var employee = new Employee(Guid.NewGuid(), firstName, lastName, phone, this);
         _employees.Add(employee);
         return employee;
     }
 
     public bool FireEmployee(Employee employee)
     {
-        if (employee.Manager.Id != this.Id) throw new EmployeeNotBelongManagerException(this, employee);
-        return employee.Fire();
+        if (employee == null)
+            throw new ArgumentNullException(nameof(employee));
+
+        return employee.Fire(this);
+    }
+
+    public void ResolveVacation(Employee employee, Vacation vacation, bool approve)
+    {
+        if (employee == null) throw new ArgumentNullException(nameof(employee));
+        if (vacation == null) throw new ArgumentNullException(nameof(vacation));
+
+        if (employee.ManagerId != Id)
+            throw new EmployeeNotBelongManagerException(this, employee);
+
+        if (approve)
+            vacation.Approve(this);
+        else
+            vacation.Reject(this);
     }
 }
