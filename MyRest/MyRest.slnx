@@ -4,4 +4,5 @@
   <Project Path="MyRest.Domain.ValueObjects/MyRest.Domain.ValueObjects.csproj" />
   <Project Path="MyRest.Domain/MyRest.Domain.csproj" />
   <Project Path="MyRest.Infrastructure.EntityFramework/MyRest.Infrastructure.EntityFramework.csproj" Id="9658d641-67d6-4459-9b35-8891a9080df0" />
+  <Project Path="MyRest.WebHost/MyRest.WebHost.csproj" Id="e8fd72ee-ee5c-4dc4-aeca-551026ced671" />
 </Solution>

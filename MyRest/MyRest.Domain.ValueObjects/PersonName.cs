@@ -3,4 +3,9 @@ using MyRest.Domain.ValueObjects.Validators;
 
 namespace MyRest.Domain.ValueObjects;
 
-public class PersonName(string value) : ValueObject<string>(new PersonNameValidator(), value);
+public class PersonName : ValueObject<string>
+{
+    protected PersonName() { }
+
+    public PersonName(string value) : base(new PersonNameValidator(), value) { }
+}

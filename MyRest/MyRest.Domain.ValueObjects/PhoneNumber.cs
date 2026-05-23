@@ -7,6 +7,8 @@ public class PhoneNumber : ValueObject<string>
 {
     private static readonly IValidator<string> _defaultValidator = new PhoneNumberValidator();
 
+    protected PhoneNumber() { }
+
     public PhoneNumber(string phone) : this(_defaultValidator, phone)
     {
     }

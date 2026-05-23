@@ -1,9 +1,15 @@
-﻿using MyRest.Domain.ValueObjects.Base;
+﻿using System;
+using MyRest.Domain.ValueObjects.Base;
 using MyRest.Domain.ValueObjects.Validators;
 
 namespace MyRest.Domain.ValueObjects;
 
-public class ShiftDuration(double value) : ValueObject<double>(new ShiftDurationValidator(), value);
+public class ShiftDuration : ValueObject<double>
+{
+    protected ShiftDuration() { }
+
+    public ShiftDuration(double value) : base(new ShiftDurationValidator(), value) { }
+}
 
 public class ShiftDurationValidator : IValidator<double>
 {
