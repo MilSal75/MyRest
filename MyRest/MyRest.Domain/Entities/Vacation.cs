@@ -25,6 +25,9 @@ public class Vacation : Entity<Guid>
         if (startDate > endDate)
             throw new ArgumentException("Дата начала не может быть позже окончания.");
 
+        if (endDate.DayNumber - startDate.DayNumber > 28)
+            throw new ArgumentException("Отпуск не может длиться больше 28 дней.");
+
         Employee = employee ?? throw new ArgumentNullException(nameof(employee));
         StartDate = startDate;
         EndDate = endDate;
