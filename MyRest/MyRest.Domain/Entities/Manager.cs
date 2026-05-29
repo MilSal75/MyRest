@@ -1,4 +1,6 @@
-﻿using MyRest.Domain.Base;
+﻿using System;
+using System.Collections.Generic;
+using MyRest.Domain.Base;
 using MyRest.Domain.ValueObjects;
 using MyRest.Domain.Exceptions;
 
@@ -6,16 +8,22 @@ namespace MyRest.Domain.Entities;
 
 public class Manager : Entity<Guid>
 {
-    public PersonName FirstName { get; private set; } = default!;
-    public PersonName LastName { get; private set; } = default!;
-    public PhoneNumber Phone { get; private set; } = default!;
+    public PersonName FirstName { get; private set; }
+    public PersonName LastName { get; private set; }
+    public PhoneNumber Phone { get; private set; }
 
-    private readonly List<Employee> _employees = new();
-    public IReadOnlyCollection<Employee> Employees => _employees.AsReadOnly();
+    
+    public virtual ICollection<Employee> Employees { get; private set; } = new List<Employee>();
 
-    private Manager() : base(Guid.NewGuid()) { }
+    
+    protected Manager() { }
 
-    public Manager(Guid id, PersonName firstName, PersonName lastName, PhoneNumber phone)
+    
+    public Manager(PersonName firstName, PersonName lastName, PhoneNumber phone)
+        : this(Guid.NewGuid(), firstName, lastName, phone) { }
+
+    
+    protected Manager(Guid id, PersonName firstName, PersonName lastName, PhoneNumber phone)
         : base(id)
     {
         FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
@@ -25,8 +33,9 @@ public class Manager : Entity<Guid>
 
     public Employee HireEmployee(PersonName firstName, PersonName lastName, PhoneNumber phone)
     {
-        var employee = new Employee(Guid.NewGuid(), firstName, lastName, phone, this);
-        _employees.Add(employee);
+        
+        var employee = new Employee(firstName, lastName, phone, this);
+        Employees.Add(employee);
         return employee;
     }
 
@@ -38,7 +47,9 @@ public class Manager : Entity<Guid>
         return employee.Fire(this);
     }
 
-    public void ResolveVacation(Employee employee, Vacation vacation, bool approve)
+
+
+    public void ApproveVacation(Employee employee, Vacation vacation)
     {
         if (employee == null) throw new ArgumentNullException(nameof(employee));
         if (vacation == null) throw new ArgumentNullException(nameof(vacation));
@@ -46,9 +57,28 @@ public class Manager : Entity<Guid>
         if (employee.ManagerId != Id)
             throw new EmployeeNotBelongManagerException(this, employee);
 
-        if (approve)
-            vacation.Approve(this);
-        else
-            vacation.Reject(this);
+        
+        if (employee.LastVacationDate.HasValue)
+        {
+            var daysSinceLastVacation = vacation.StartDate.DayNumber - employee.LastVacationDate.Value.DayNumber;
+            if (daysSinceLastVacation < 180)
+            {
+                throw new InvalidOperationException("Сотрудник может брать отпуск не чаще 1 раза в 6 месяцев.");
+            }
+        }
+
+        vacation.Approve(this);
+        employee.RegisterVacation(vacation.StartDate);
+    }
+
+    public void RejectVacation(Employee employee, Vacation vacation)
+    {
+        if (employee == null) throw new ArgumentNullException(nameof(employee));
+        if (vacation == null) throw new ArgumentNullException(nameof(vacation));
+
+        if (employee.ManagerId != Id)
+            throw new EmployeeNotBelongManagerException(this, employee);
+
+        vacation.Reject(this);
     }
 }

@@ -1,35 +1,44 @@
-﻿using MyRest.Domain.Base;
+﻿using System;
+using MyRest.Domain.Base;
 using MyRest.Domain.Enums;
+using MyRest.Domain.Exceptions;
 
 namespace MyRest.Domain.Entities;
 
+
 public class Vacation : Entity<Guid>
 {
-    public Employee Employee { get; private set; }
-    public DateOnly StartDate { get; private set; }
-    public DateOnly EndDate { get; private set; }
-    public VacationStatus Status { get; private set; } = VacationStatus.Requested;
+    public Employee Employee { get; }
+    public DateOnly StartDate { get; }
+    public DateOnly EndDate { get; }
+    public VacationStatus Status { get; private set; }
 
-    private Vacation() : base(Guid.NewGuid()) { }
+    
+    protected Vacation() { }
 
-    public Vacation(Guid id, Employee employee, DateOnly startDate, DateOnly endDate)
+    public Vacation(Employee employee, DateOnly startDate, DateOnly endDate)
+        : this(Guid.NewGuid(), employee, startDate, endDate, VacationStatus.Requested) { }
+
+    protected Vacation(Guid id, Employee employee, DateOnly startDate, DateOnly endDate, VacationStatus status)
         : base(id)
     {
         if (startDate > endDate)
-            throw new ArgumentException("Дата начала отпуска не может быть позже даты окончания.");
+            throw new ArgumentException("Дата начала не может быть позже окончания.");
 
         Employee = employee ?? throw new ArgumentNullException(nameof(employee));
         StartDate = startDate;
         EndDate = endDate;
+        Status = status;
     }
 
+    
     public void Approve(Manager manager)
     {
         if (manager == null)
             throw new ArgumentNullException(nameof(manager));
 
         if (manager.Id != Employee.ManagerId)
-            throw new UnauthorizedAccessException("Одобрить отпуск может только менеджер этого сотрудника.");
+            throw new EmployeeNotBelongManagerException(manager, Employee);
 
         if (Status != VacationStatus.Requested)
             throw new InvalidOperationException("Можно одобрить только заявку в статусе Requested.");
@@ -43,7 +52,7 @@ public class Vacation : Entity<Guid>
             throw new ArgumentNullException(nameof(manager));
 
         if (manager.Id != Employee.ManagerId)
-            throw new UnauthorizedAccessException("Отклонить отпуск может только менеджер этого сотрудника.");
+            throw new EmployeeNotBelongManagerException(manager, Employee);
 
         if (Status != VacationStatus.Requested)
             throw new InvalidOperationException("Можно отклонить только заявку в статусе Requested.");

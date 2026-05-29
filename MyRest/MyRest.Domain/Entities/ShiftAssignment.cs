@@ -1,23 +1,32 @@
-﻿using MyRest.Domain.Base;
+﻿using System;
+using MyRest.Domain.Base;
 using MyRest.Domain.Enums;
+using MyRest.Domain.Exceptions;
 
 namespace MyRest.Domain.Entities;
 
+
 public class ShiftAssignment : Entity<Guid>
 {
-    public Employee Employee { get; private set; } = default!;
-    public Shift Shift { get; private set; } = default!;
-    public AssignmentStatus Status { get; private set; } = AssignmentStatus.Planned;
+    public Employee Employee { get; }
+    public Shift Shift { get; }
+    public AssignmentStatus Status { get; private set; }
 
-    private ShiftAssignment() : base(Guid.NewGuid()) { }
+    
+    protected ShiftAssignment() { }
 
-    public ShiftAssignment(Guid id, Employee employee, Shift shift)
+    public ShiftAssignment(Employee employee, Shift shift)
+        : this(Guid.NewGuid(), employee, shift, AssignmentStatus.Planned) { }
+
+    protected ShiftAssignment(Guid id, Employee employee, Shift shift, AssignmentStatus status)
         : base(id)
     {
         Employee = employee ?? throw new ArgumentNullException(nameof(employee));
         Shift = shift ?? throw new ArgumentNullException(nameof(shift));
+        Status = status;
     }
 
+    
     public void Complete(Guid userId)
     {
         if (Status != AssignmentStatus.Planned)
@@ -29,6 +38,7 @@ public class ShiftAssignment : Entity<Guid>
         Status = AssignmentStatus.Completed;
     }
 
+    
     public void Cancel(Manager manager)
     {
         if (manager == null)
@@ -38,7 +48,7 @@ public class ShiftAssignment : Entity<Guid>
             throw new InvalidOperationException("Можно отменить только назначенную смену.");
 
         if (manager.Id != Employee.ManagerId)
-            throw new UnauthorizedAccessException("Отменить смену может только менеджер этого сотрудника.");
+            throw new EmployeeNotBelongManagerException(manager, Employee);
 
         Status = AssignmentStatus.Cancelled;
     }
