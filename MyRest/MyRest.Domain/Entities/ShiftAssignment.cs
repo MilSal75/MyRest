@@ -26,19 +26,23 @@ public class ShiftAssignment : Entity<Guid>
         Status = status;
     }
 
-    
+
     public void Complete(Guid userId)
     {
         if (Status != AssignmentStatus.Planned)
             throw new InvalidOperationException("Можно завершить только назначенную смену.");
 
+        
         if (userId != Employee.Id && userId != Employee.ManagerId)
-            throw new UnauthorizedAccessException("Завершить смену может только сам сотрудник или его менеджер.");
+        {
+            
+            throw new InvalidOperationException("Завершить смену может только сам сотрудник или его менеджер.");
+        }
 
         Status = AssignmentStatus.Completed;
     }
 
-    
+
     public void Cancel(Manager manager)
     {
         if (manager == null)
