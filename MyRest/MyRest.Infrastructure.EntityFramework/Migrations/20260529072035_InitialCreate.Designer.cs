@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyRest.Infrastructure.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260523084821_InitialCreate")]
+    [Migration("20260529072035_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -30,6 +30,9 @@ namespace MyRest.Infrastructure.EntityFramework.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<DateOnly?>("LastVacationDate")
+                        .HasColumnType("date");
 
                     b.Property<Guid>("ManagerId")
                         .HasColumnType("uuid");

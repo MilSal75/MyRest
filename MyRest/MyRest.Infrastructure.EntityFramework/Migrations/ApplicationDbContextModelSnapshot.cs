@@ -28,6 +28,9 @@ namespace MyRest.Infrastructure.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<DateOnly?>("LastVacationDate")
+                        .HasColumnType("date");
+
                     b.Property<Guid>("ManagerId")
                         .HasColumnType("uuid");
 

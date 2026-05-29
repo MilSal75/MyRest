@@ -34,7 +34,8 @@ namespace MyRest.Infrastructure.EntityFramework.Migrations
                     LastName = table.Column<string>(type: "text", nullable: false),
                     Phone = table.Column<string>(type: "text", nullable: false),
                     Status = table.Column<int>(type: "integer", nullable: false),
-                    ManagerId = table.Column<Guid>(type: "uuid", nullable: false)
+                    ManagerId = table.Column<Guid>(type: "uuid", nullable: false),
+                    LastVacationDate = table.Column<DateOnly>(type: "date", nullable: true)
                 },
                 constraints: table =>
                 {
